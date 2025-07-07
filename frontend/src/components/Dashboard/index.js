@@ -1,8 +1,8 @@
-import React,{useEffect,useState} from "react"
-import {Link} from "react-router-dom"
-import axios from "axios"
+import "./index.css";
+import axios from "axios";
+import { useState,useEffect } from "react";
 
-const Student=()=>{
+const Dashboard = () => {
     const[stud,setStud]=useState([]);
 
     useEffect(()=>{
@@ -22,11 +22,9 @@ const Student=()=>{
         
        
     }
-
-    return(<div className="d-flex vh-100 bg-primary justify-content-center align-items-center">
-        <div className="w-50 bg-white rounded p-3">
-            <Link to="/create" className="btn btn-success">Add +</Link>
-            <table className="table">
+  return (
+    <div className="dashboard p-4">
+      <table className="table">
                 <thead>
                     <tr>
                         <th>Name</th>
@@ -41,7 +39,6 @@ const Student=()=>{
                                 <td>{data.Name}</td>
                                 <td>{data.Email}</td>
                                 <td>
-                                    <Link to={`/update/${data.ID}`} className="btn btn-primary">Update</Link>
                                     <button onClick={e=>handleDelete(data.ID)} className="btn btn-danger ms-2">Delete</button>
                                 </td>
                             </tr>)
@@ -49,8 +46,8 @@ const Student=()=>{
                     }
                 </tbody>
             </table>
-        </div>
-    </div>)
-}
+    </div>
+  );
+};
 
-export default Student;
+export default Dashboard;
