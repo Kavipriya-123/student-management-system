@@ -70,11 +70,11 @@ cd student-management-system
 
 --- 
 ## Screenshots
-![Screenshot 1](assets/page1.png)  
-![Screenshot 2](assets/page2.png)  
-![Screenshot 3](assets/page3.png)
-![Screenshot 4](assets/page4.png)  
-![Screenshot 5](assets/page5.png)  
+![Screenshot 1](assets/page1.PNG)  
+![Screenshot 2](assets/page2.PNG)  
+![Screenshot 3](assets/page3.PNG)
+![Screenshot 4](assets/page4.PNG)  
+![Screenshot 5](assets/page5.PNG)  
 
 
 ---
