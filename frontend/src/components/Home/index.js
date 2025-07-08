@@ -7,6 +7,9 @@ import Sidebar from "../Sidebar"
 import Dashboard from "../Dashboard"
 import Students from "../Students"
 import AddStudents from "../AddStudents"
+import Courses from "../Courses"
+import StudentCourse from "../StudentCourse"
+import About from "../About"
 
 const Home=()=>{
     const [activeTab,setActiveTab]=useState("Dashboard")
@@ -15,6 +18,9 @@ const Home=()=>{
             case "Dashboard": return <Dashboard/>
             case "Students": return <Students/>
             case "AddStudent" :return <AddStudents/>
+            case "Courses" :return <Courses/>
+            case "StudentCourse" : return <StudentCourse/>
+            case "About" : return <About/>
             default : return null;
         }
     }
