@@ -5,11 +5,14 @@ import { useState,useEffect } from "react";
 const Dashboard = () => {
     const[stud,setStud]=useState([]);
 
-    useEffect(()=>{
-        axios.get("http://localhost:5000/")
-        .then(res=>setStud(res.data))
-        .catch(err=>console.log(err));
-    },[]);
+    useEffect(() => {
+    axios.get("http://localhost:5000/")
+        .then(res => {
+            console.log("Student data:", res.data);  
+            setStud(res.data);
+        })
+        .catch(err => console.log(err));
+}, []);
 
 
     const handleDelete=async(id)=>{
@@ -30,6 +33,7 @@ const Dashboard = () => {
                         <th>Student Id</th>
                         <th>Name</th>
                         <th>Email</th>
+                        <th>Phone no</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -40,6 +44,7 @@ const Dashboard = () => {
                                 <td>{data.ID}</td>
                                 <td>{data.Name}</td>
                                 <td>{data.Email}</td>
+                                <td>{data.phone}</td>
                                 <td>
                                     <button onClick={e=>handleDelete(data.ID)} className="btn btn-danger ms-2">Delete</button>
                                 </td>

@@ -25,17 +25,18 @@ app.get("/", (req, res) => {
 });
 
 app.post("/create", (req, res) => {
-    const query = "INSERT INTO student (name, email) VALUES (?)";
-    const values = [req.body.name, req.body.email];
+    const query = "INSERT INTO student (name, email, phone) VALUES (?)";
+    const values = [req.body.name, req.body.email, req.body.phone];
     db.query(query, [values], (err, data) => {
         if (err) return res.status(500).json("Error");
         return res.json(data);
     });
 });
 
+
 app.put("/update/:id", (req, res) => {
-    const query = "UPDATE student SET name = ?, email = ? WHERE id = ?";
-    const values = [req.body.name, req.body.email];
+    const query = "UPDATE student SET name = ?, email = ?, phone = ? WHERE id = ?";
+    const values = [req.body.name, req.body.email, req.body.phone];
     db.query(query, [...values, req.params.id], (err, data) => {
         if (err) return res.status(500).json("Error");
         return res.json(data);
@@ -119,32 +120,20 @@ app.delete("/api/courses/:id", (req, res) => {
 });
 
 // =================== ONE-TIME TABLE ALTER ===================
-
 app.get("/only-once", (req, res) => {
-    const sql1 = "ALTER TABLE courses ADD duration VARCHAR(100)";
-    const sql2 = `ALTER TABLE student 
-                  ADD course_id INT, 
-                  ADD CONSTRAINT fk_course 
-                  FOREIGN KEY (course_id) REFERENCES courses(id) 
-                  ON DELETE SET NULL 
-                  ON UPDATE CASCADE`;
+    const sql1 = `ALTER TABLE student 
+                  ADD phone VARCHAR(100);`;
 
     db.query(sql1, (err1) => {
         if (err1 && err1.code !== 'ER_DUP_FIELDNAME') {
-            console.error("Error adding duration:", err1);
-            return res.status(500).json("Error altering courses table");
+            console.error("Error adding phone:", err1);
+            return res.status(500).json("Error altering student table");
         }
-
-        db.query(sql2, (err2) => {
-            if (err2 && err2.code !== 'ER_DUP_FIELDNAME') {
-                console.error("Error adding foreign key:", err2);
-                return res.status(500).json("Error altering student table");
-            }
-
-            return res.json("Tables updated successfully");
-        });
+        return res.json("Phone column added successfully (or already exists)");
     });
 });
+
+// ===================   student-course-assignment   ===================
 
 app.put("/assign-course/:studentId", (req, res) => {
   const { courseId } = req.body;
