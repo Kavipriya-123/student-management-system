@@ -18,8 +18,10 @@ const Login = () => {
     e.preventDefault();
     axios.post("http://localhost:5000/login", formData)
       .then((res) => {
-        const { token } = res.data;
+        const { token,user } = res.data;
         Cookies.set("jwtToken", token);
+          localStorage.setItem("userFullName", user.fullName);
+          localStorage.setItem("userGender",user.gender);
         setMessage({ type: "success", text: "Login successful! Redirecting..." });
         setTimeout(() => navigate("/home"), 1500);
       })

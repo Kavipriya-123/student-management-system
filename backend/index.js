@@ -88,9 +88,22 @@ app.post("/login", (req, res) => {
             expiresIn: "12h",
         });
 
-        return res.json({ token });
+        return res.json({
+            token,
+            user: {
+                fullName: user.fullname,
+                email: user.email,
+                gender:user.gender
+            }
+        });
     });
 });
+
+
+
+
+
+
 
 // =================== COURSES API ===================
 
