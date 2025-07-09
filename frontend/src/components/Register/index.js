@@ -1,4 +1,3 @@
-import "./index.css";
 import { useState } from "react";
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
@@ -13,7 +12,10 @@ const Register = () => {
     password: ""
   });
 
-  const navigate = useNavigate(); 
+  const [successMessage, setSuccessMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -25,20 +27,43 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setSuccessMessage("");
+    setErrorMessage("");
 
     axios
       .post("http://localhost:5000/register", formData)
       .then((res) => {
-        console.log(res.data);
-        navigate("/");
+        setSuccessMessage("✅ Registration successful! Redirecting to login...");
+        setTimeout(() => {
+          navigate("/");
+        }, 2000);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        if (err.response && err.response.data) {
+          setErrorMessage("❌ " + err.response.data.message || "Registration failed.");
+        } else {
+          setErrorMessage("⚠️ Network error. Please check your connection or try again later.");
+        }
+      });
   };
 
   return (
     <div className="mt-5 d-flex vh-100 bg-light justify-content-center align-items-center">
       <div className="bg-white p-4 rounded shadow w-50">
         <h2 className="mb-4 text-center">Register</h2>
+
+        {successMessage && (
+          <div className="alert alert-success text-center" role="alert">
+            {successMessage}
+          </div>
+        )}
+
+        {errorMessage && (
+          <div className="alert alert-danger text-center" role="alert">
+            {errorMessage}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Full Name</label>

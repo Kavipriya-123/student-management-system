@@ -1,4 +1,3 @@
-import "./index.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
@@ -9,43 +8,63 @@ const Students = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-  const getData = () => {
-    axios.get("http://localhost:5000/")
-      .then(res => setStud(res.data))
-      .catch(err => console.log(err));
+  const getData = async () => {
+    setLoading(true);
+    setError("");
+    try {
+      const res = await axios.get("http://localhost:5000/");
+      setStud(res.data);
+    } catch (err) {
+      console.error(err);
+      setError("⚠️ Failed to fetch students. Check server or network.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  const handleUpdate = (event) => {
+  const handleUpdate = async (event) => {
     event.preventDefault();
-    axios.put("http://localhost:5000/update/" + id, { name, email, phone })
-      .then(res => {
-        console.log(res);
-        setUpdate(false);
-        setName("");
-        setEmail("");
-        setPhone("");
-        getData();
-      }).catch(err => console.log(err));
+    try {
+      await axios.put("http://localhost:5000/update/" + id, { name, email, phone });
+      setUpdate(false);
+      setName("");
+      setEmail("");
+      setPhone("");
+      getData();
+    } catch (err) {
+      console.error(err);
+      setError("❌ Failed to update student. Please try again.");
+    }
   };
 
   const setUpdateStatus = (id) => {
     const selected = stud.find(stu => stu.ID === id);
-    setId(id);
-    setName(selected.Name);
-    setEmail(selected.Email);
-    setPhone(selected.phone);
-    setUpdate(true);
+    if (selected) {
+      setId(id);
+      setName(selected.Name);
+      setEmail(selected.Email);
+      setPhone(selected.phone);
+      setUpdate(true);
+    }
   };
 
   return (
     <div className="dashboard p-4">
+      {error && (
+        <div className="alert alert-danger" role="alert">
+          {error}
+        </div>
+      )}
+
       {isUpdate ? (
-        <form onSubmit={handleUpdate}>
+        <form onSubmit={handleUpdate} className="border p-4 rounded bg-light">
           <h2>Update Student</h2>
           <div className="mb-2">
             <label>Name</label>
@@ -55,6 +74,7 @@ const Students = () => {
               className="form-control"
               value={name}
               onChange={(e) => setName(e.target.value)}
+              required
             />
           </div>
           <div className="mb-2">
@@ -65,6 +85,7 @@ const Students = () => {
               className="form-control"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
+              required
             />
           </div>
           <div className="mb-2">
@@ -75,12 +96,25 @@ const Students = () => {
               className="form-control"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
+              required
             />
           </div>
-          <button className="btn btn-success">Update</button>
+          <button className="btn btn-success me-2">Update</button>
+          <button
+            className="btn btn-secondary"
+            onClick={() => setUpdate(false)}
+            type="button"
+          >
+            Cancel
+          </button>
         </form>
+      ) : loading ? (
+        <div className="text-center mt-4">
+          <div className="spinner-border text-primary" role="status" />
+          <div>Loading students...</div>
+        </div>
       ) : (
-        <table className="table">
+        <table className="table table-bordered table-striped">
           <thead>
             <tr>
               <th>Student Id</th>

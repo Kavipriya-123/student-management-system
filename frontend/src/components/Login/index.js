@@ -1,4 +1,4 @@
-import {  useState } from "react";
+import { useState } from "react";
 import axios from "axios";
 import Cookies from "js-cookie";
 import { useNavigate, Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import "./index.css";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
+  const [message, setMessage] = useState({ type: "", text: "" });
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -19,11 +20,12 @@ const Login = () => {
       .then((res) => {
         const { token } = res.data;
         Cookies.set("jwtToken", token);
-        navigate("/home");
+        setMessage({ type: "success", text: "Login successful! Redirecting..." });
+        setTimeout(() => navigate("/home"), 1500); // Redirect after 1.5s
       })
       .catch((err) => {
         console.error(err);
-        alert("Invalid email or password");
+        setMessage({ type: "danger", text: "Invalid email or password" });
       });
   };
 
@@ -31,6 +33,13 @@ const Login = () => {
     <div className="d-flex vh-100 bg-light justify-content-center align-items-center">
       <div className="bg-white p-5 rounded shadow" style={{ width: "400px" }}>
         <h3 className="text-center mb-4">Login to Your Account</h3>
+
+        {message.text && (
+          <div className={`alert alert-${message.type}`} role="alert">
+            {message.text}
+          </div>
+        )}
+
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
             <label className="form-label">Email</label>

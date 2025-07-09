@@ -1,4 +1,3 @@
-import "./index.css"
 import { useState } from "react"
 
 import Navbar from "../Navbar"
@@ -11,31 +10,49 @@ import Courses from "../Courses"
 import StudentCourse from "../StudentCourse"
 import About from "../About"
 
-const Home=()=>{
-    const [activeTab,setActiveTab]=useState("Dashboard")
-    const updatePage=()=>{
-        switch(activeTab){
-            case "Dashboard": return <Dashboard/>
-            case "Students": return <Students/>
-            case "AddStudent" :return <AddStudents/>
-            case "Courses" :return <Courses/>
-            case "StudentCourse" : return <StudentCourse/>
-            case "About" : return <About/>
-            default : return null;
-        }
-    }
+const Home = () => {
+  const [activeTab, setActiveTab] = useState("Dashboard");
 
-    const changeTab=(tabName)=>{
-        setActiveTab(tabName);
+  const updatePage = () => {
+    switch (activeTab) {
+      case "Dashboard":
+        return <Dashboard />;
+      case "Students":
+        return <Students />;
+      case "AddStudent":
+        return <AddStudents />;
+      case "Courses":
+        return <Courses />;
+      case "StudentCourse":
+        return <StudentCourse />;
+      case "About":
+        return <About />;
+      default:
+        return null;
     }
-    
-    return(<div>
-        <Navbar/>
-        <div className="d-flex">
-            <Sidebar changeTab={changeTab} activeTab={activeTab}/>
-            {updatePage()}
-        </div>
-    </div>)
-}
+  };
+
+  const changeTab = (tabName) => {
+    setActiveTab(tabName);
+  };
+
+  let content;
+  try {
+    content = updatePage();
+  } catch (e) {
+    console.log("Server error:", e);
+    content = <div className="text-danger p-3">⚠️ Something went wrong. Please try again later.</div>;
+  }
+
+  return (
+    <div>
+      <Navbar />
+      <div className="d-flex">
+        <Sidebar changeTab={changeTab} activeTab={activeTab} />
+        <div className="flex-grow-1 p-3">{content}</div>
+      </div>
+    </div>
+  );
+};
 
 export default Home;

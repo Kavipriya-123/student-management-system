@@ -1,3 +1,21 @@
-.about-cont{
-    padding:40px;
+.about-wrapper {
+  background-color: #f8f9fa; 
+  border-radius: 8px;
+}
+
+.about-box {
+  background-color: #ffffff; 
+  border: 1px solid #dee2e6;
+}
+
+.styled-list {
+  padding-left: 1.2rem;
+  margin-top: 0.5rem;
+  list-style-type: none;
+}
+
+.styled-list li {
+  margin-bottom: 0.5rem;
+  font-size: 1rem;
+  line-height: 1.6;
 }
