@@ -4,11 +4,11 @@ import Navbar from "../Navbar"
 import Sidebar from "../Sidebar"
 
 import Dashboard from "../Dashboard"
-import Students from "../Students"
 import AddStudents from "../AddStudents"
 import Courses from "../Courses"
 import StudentCourse from "../StudentCourse"
 import About from "../About"
+import Studentss from "../Studentss"
 
 const Home = () => {
   const [activeTab, setActiveTab] = useState("Dashboard");
@@ -18,7 +18,7 @@ const Home = () => {
       case "Dashboard":
         return <Dashboard />;
       case "Students":
-        return <Students />;
+        return <Studentss />;
       case "AddStudent":
         return <AddStudents />;
       case "Courses":

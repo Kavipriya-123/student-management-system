@@ -1,19 +1,44 @@
+.login-container {
+  background-color: #f0f2f5;
+}
 
-.login-form {
+.login-left {
+  width: 50%;
+  background: linear-gradient(135deg, #e9f3ff 0%, #687d92 100%);
+}
+
+.login-right {
+  width: 50%;
+  overflow: hidden;
+}
+
+.login-img {
   width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.login-box {
+  width: 90%;
   max-width: 400px;
-  margin: auto;
+  background-color: #ffffff;
 }
 
-.login-form h2 {
-  font-weight: bold;
-  text-align: center;
+.login-head1 {
+  font-weight: 700;
+  font-size: 28px;
+  color: #0d6efd;
 }
 
-.login-form .form-control {
-  border-radius: 0.375rem;
+.login-subhead {
+  font-size: 14px;
+  color: #6c757d;
 }
 
-.login-form button {
-  font-weight: 600;
+.login-label {
+  font-weight: 500;
+}
+
+.login-signup {
+  font-size: 14px;
 }

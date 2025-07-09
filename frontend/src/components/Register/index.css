@@ -1,0 +1,46 @@
+.register-container {
+  display: flex;
+  height: 100vh;
+  background-color: #f8f9fa;
+}
+
+.register-left {
+  width: 50%;
+  overflow: hidden;
+}
+
+.register-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  filter: brightness(85%);
+}
+
+.register-right {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-form-container {
+  width: 80%;
+  background-color: #ffffff;
+  animation: slideFade 0.5s ease;
+}
+
+.register-head {
+  font-weight: 600;
+  color: #007bff;
+}
+
+@keyframes slideFade {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

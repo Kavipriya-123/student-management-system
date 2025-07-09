@@ -11,9 +11,6 @@ const Sidebar = ({changeTab,activeTab}) => {
         <li onClick={()=>changeTab("Students")} className={`sidebar-item mb-3 fw-semibold ${activeTab==="Students" && "activeTabStyle"}`}>
           <i className="bi bi-people-fill me-2"></i> Students
         </li>
-        <li onClick={()=>changeTab("AddStudent")} className={`sidebar-item mb-3 fw-semibold ${activeTab==="AddStudent" && "activeTabStyle"}`}>
-          <i className="bi bi-person-plus-fill me-2"></i> Add Student
-        </li>
         <li onClick={()=>changeTab("Courses")} className={`sidebar-item mb-3 fw-semibold ${activeTab==="Courses" && "activeTabStyle"}`}>
           <i className="bi bi-person-plus-fill me-2"></i> Courses
         </li>
