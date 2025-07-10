@@ -1,14 +1,10 @@
 .home-layout {
   margin-top: 70px; 
   min-height: 100vh;
-  position: relative;
+  justify-content: space-between;
 }
 
-.main-content-area {
-  margin-left: 60px;
-  transition: margin-left 0.3s ease;
+.main-content-cont {
+  padding-left: 460px !important;
 }
 
-.sidebar.expanded ~ .main-content-area {
-  margin-left: 220px;
-}

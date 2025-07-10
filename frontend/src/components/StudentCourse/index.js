@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-const StudentCourse = () => {
+const StudentCourse = ({ changeTab }) => {
   const [students, setStudents] = useState([]);
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const [assigningId, setAssigningId] = useState(null); 
+  const [assigningId, setAssigningId] = useState(null);
 
   const fetchData = async () => {
     setLoading(true);
@@ -42,8 +42,18 @@ const StudentCourse = () => {
   };
 
   return (
-    <div className="container p-4 w-100">
-      <h2>Assign Course to Students</h2>
+    <div className="cont1 p-4 w-100">
+      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <div className="d-flex align-items-center">
+          <i
+            className="bi bi-house-fill text-secondary fs-4 me-2"
+            role="button"
+            title="Back to Dashboard"
+            onClick={() => changeTab("Dashboard")}
+          ></i>
+          <h2 className="m-0 fw-bold text-primary">Assign Course to Students</h2>
+        </div>
+      </div>
 
       {error && (
         <div className="alert alert-danger" role="alert">

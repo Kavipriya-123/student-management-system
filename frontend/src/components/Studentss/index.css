@@ -83,6 +83,6 @@
     color:rgb(192, 80, 80);
 }
 
-.sidebar.expanded ~ .main-content-area {
-  margin-left: 220px;
+.cont1{
+    padding-left:210px !important;
 }

@@ -47,7 +47,7 @@ const Navbar = ({ toggleSidebar }) => {
   };
 
   return (
-    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary px-4 py-3 shadow-sm">
+    <nav className="navbar nav-cont-1 sticky-top navbar-expand-lg navbar-dark bg-primary px-4 py-3 shadow-sm">
       <div className="container-fluid d-flex justify-content-between align-items-center w-100">
         <div className="d-flex align-items-center">
           {/* Sidebar Toggle Button */}

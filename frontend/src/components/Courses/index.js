@@ -4,7 +4,7 @@ import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import "./index.css";
 
-const Courses = () => {
+const Courses = ({ changeTab }) => {
   const [courses, setCourses] = useState([]);
   const [formData, setFormData] = useState({ name: "", instructor: "", duration: "", id: null });
   const [isEditing, setIsEditing] = useState(false);
@@ -12,10 +12,8 @@ const Courses = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
   const [confirmDeleteId, setConfirmDeleteId] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
-
 
   const fetchCourses = async () => {
     setLoading(true);
@@ -74,20 +72,19 @@ const Courses = () => {
     }
   };
 
-    const handleDelete = async () => {
+  const handleDelete = async () => {
     try {
-        await axios.delete(`http://localhost:5000/api/courses/${confirmDeleteId}`);
-        showSuccess("✅ Course deleted successfully!");
-        fetchCourses();
+      await axios.delete(`http://localhost:5000/api/courses/${confirmDeleteId}`);
+      showSuccess("✅ Course deleted successfully!");
+      fetchCourses();
     } catch (err) {
-        console.error(err);
-        setError("❌ Failed to delete course. Please try again.");
+      console.error(err);
+      setError("❌ Failed to delete course. Please try again.");
     } finally {
-        setShowConfirmModal(false);
-        setConfirmDeleteId(null);
+      setShowConfirmModal(false);
+      setConfirmDeleteId(null);
     }
-    };
-
+  };
 
   const showSuccess = (msg) => {
     setSuccessMessage(msg);
@@ -97,8 +94,21 @@ const Courses = () => {
   };
 
   return (
-    <div className="container p-4 ">
-      <h2>Courses</h2>
+    <div className="cont1 p-4">
+      <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
+        <div className="d-flex align-items-center">
+          <i
+            className="bi bi-house-fill text-secondary fs-4 me-2"
+            role="button"
+            title="Back to Dashboard"
+            onClick={() => changeTab("Dashboard")}
+          ></i>
+          <h2 className="m-0 fw-bold text-primary">Manage Courses</h2>
+        </div>
+        <button title="Add new course" className="btn btn-success mt-3 mt-md-0" onClick={openAddModal}>
+          Add Course +
+        </button>
+      </div>
 
       {error && <div className="alert alert-danger">{error}</div>}
 
@@ -109,10 +119,6 @@ const Courses = () => {
         </div>
       )}
 
-      <button className="btn btn-success mb-3" onClick={openAddModal}>
-        Add Course +
-      </button>
-
       {loading ? (
         <div className="text-center">
           <div className="spinner-border text-primary" role="status" />
@@ -122,7 +128,7 @@ const Courses = () => {
         <table className="table table-striped">
           <thead>
             <tr>
-              <th>Course Id</th>
+              <th>Course ID</th>
               <th>Name</th>
               <th>Instructor</th>
               <th>Duration</th>
@@ -137,17 +143,14 @@ const Courses = () => {
                 <td>{course.Instructor}</td>
                 <td>{course.duration}</td>
                 <td>
-                  <button
-                    className="icon-style"
-                    onClick={() => openEditModal(course)}
-                  >
+                  <button title="Edit" className="icon-style" onClick={() => openEditModal(course)}>
                     <FaEdit />
                   </button>
-                  <button
+                  <button title="Delete"
                     className="icon-style delete-icon"
                     onClick={() => {
-                    setConfirmDeleteId(course.ID);
-                    setShowConfirmModal(true);
+                      setConfirmDeleteId(course.ID);
+                      setShowConfirmModal(true);
                     }}
                   >
                     <MdDelete />
@@ -159,7 +162,7 @@ const Courses = () => {
         </table>
       )}
 
-      {/* Modal */}
+      {/* Add/Edit Modal */}
       {modalOpen && (
         <div className="modal-overlay">
           <div className="modal-content">
@@ -193,11 +196,7 @@ const Courses = () => {
                 <button className="btn btn-primary" type="submit">
                   {isEditing ? "Update" : "Add"}
                 </button>
-                <button
-                  className="btn btn-secondary"
-                  type="button"
-                  onClick={() => setModalOpen(false)}
-                >
+                <button className="btn btn-secondary" type="button" onClick={() => setModalOpen(false)}>
                   Cancel
                 </button>
               </div>
@@ -206,26 +205,23 @@ const Courses = () => {
         </div>
       )}
 
+      {/* Delete Confirmation Modal */}
       {showConfirmModal && (
         <div className="modal-overlay">
-            <div className="modal-content">
+          <div className="modal-content">
             <h5 className="mb-3 text-danger">Confirm Deletion</h5>
             <p>Are you sure you want to delete this course? This action cannot be undone.</p>
             <div className="d-flex justify-content-end gap-2">
-                <button className="btn btn-danger" onClick={handleDelete}>
+              <button className="btn btn-danger" onClick={handleDelete}>
                 Yes, Delete
-                </button>
-                <button
-                className="btn btn-secondary"
-                onClick={() => setShowConfirmModal(false)}
-                >
+              </button>
+              <button className="btn btn-secondary" onClick={() => setShowConfirmModal(false)}>
                 Cancel
-                </button>
+              </button>
             </div>
-            </div>
+          </div>
         </div>
-        )}
-
+      )}
     </div>
   );
 };

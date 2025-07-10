@@ -87,7 +87,6 @@
     opacity: 1;
   }
 }
-
-.sidebar.expanded ~ .main-content-area {
-  margin-left: 220px;
+.cont1{
+    padding-left:200px;
 }

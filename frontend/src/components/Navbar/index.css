@@ -1,6 +1,9 @@
 .navbar-brand {
   letter-spacing: 1.5px;
 }
+.nav-cont-1{
+  width:100vw;
+}
 
 .btn-nav {
   padding: 8px 20px;
