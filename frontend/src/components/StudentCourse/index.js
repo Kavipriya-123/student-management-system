@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import "./index.js"
 
 const StudentCourse = ({ changeTab }) => {
   const [students, setStudents] = useState([]);
@@ -66,7 +67,7 @@ const StudentCourse = ({ changeTab }) => {
           <div className="spinner-border text-primary" role="status" />
           <div>Loading data...</div>
         </div>
-      ) : (
+      ) : (<div className="table-flow-control">
         <table className="table table-bordered">
           <thead>
             <tr>
@@ -101,6 +102,7 @@ const StudentCourse = ({ changeTab }) => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
     </div>
   );

@@ -86,3 +86,9 @@
 .cont1{
     padding-left:210px !important;
 }
+
+.table-flow-control {
+  overflow-x: auto; 
+  overflow-y: auto; 
+  max-height: 350px; 
+}

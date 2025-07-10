@@ -21,6 +21,9 @@
 
 .cont1{
     padding-left:200px;
+    overflow-x: auto; 
+    overflow-y: auto; 
+    max-height: 500px; 
 }
 
 .stat-card {

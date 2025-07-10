@@ -48,6 +48,48 @@ const Sidebar = ({ changeTab, activeTab, sidebarOpen }) => {
           <i className="bi bi-info-circle-fill"></i>
           {isExpanded && <span>About</span>}
         </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-1</span>}
+        </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-2</span>}
+        </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-3</span>}
+        </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-4</span>}
+        </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-5</span>}
+        </li>
+        <li
+          className={`sidebar-item ${activeTab === "About12" ? "activeTabStyle" : ""}`}
+          onClick={() => changeTab("About1")}
+        >
+          <i className="bi bi-info-circle-fill"></i>
+          {isExpanded && <span>Work-6</span>}
+        </li>
       </ul>
     </div>
   );

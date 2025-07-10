@@ -90,3 +90,9 @@
 .cont1{
     padding-left:200px;
 }
+
+.table-flow-control {
+  overflow-x: auto; 
+  overflow-y: auto; 
+  max-height: 350px; 
+}

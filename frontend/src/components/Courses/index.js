@@ -124,8 +124,8 @@ const Courses = ({ changeTab }) => {
           <div className="spinner-border text-primary" role="status" />
           <div>Loading courses...</div>
         </div>
-      ) : (
-        <table className="table table-striped">
+      ) : (<div className="table-flow-control" >
+        <table className=" table table-striped">
           <thead>
             <tr>
               <th>Course ID</th>
@@ -160,6 +160,7 @@ const Courses = ({ changeTab }) => {
             ))}
           </tbody>
         </table>
+        </div>
       )}
 
       {/* Add/Edit Modal */}

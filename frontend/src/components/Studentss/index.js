@@ -113,7 +113,7 @@ const Studentss = ({ changeTab }) => {
         </div>
       )}
 
-      <div className="bg-white rounded p-3 position-relative">
+      <div className="bg-white rounded p-3 position-relative table-flow-control">
         <table className="table">
           <thead>
             <tr>

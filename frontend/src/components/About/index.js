@@ -2,7 +2,7 @@ import "./index.css";
 
 const About = ({ changeTab }) => {
   return (
-    <div className="cont1 about-wrapper container p-4">
+    <div className="cont1 about-wrapper p-4">
       <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
         <div className="d-flex align-items-center">
           <i

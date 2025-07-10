@@ -1,58 +1,32 @@
-import { useState } from "react"
+import { useState } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
-import Navbar from "../Navbar"
-import Sidebar from "../Sidebar"
+import Navbar from "../Navbar";
+import Sidebar from "../Sidebar";
 
-import Dashboard from "../Dashboard"
-import Courses from "../Courses"
-import StudentCourse from "../StudentCourse"
-import About from "../About"
-import Studentss from "../Studentss"
-import "./index.css"
+import "./index.css";
 
 const Home = () => {
-  const [activeTab, setActiveTab] = useState("Dashboard");
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const navigate = useNavigate();
+  const location = useLocation();
 
-
-  const updatePage = () => {
-    switch (activeTab) {
-      case "Dashboard":
-        return <Dashboard changeTab={changeTab}/>;
-      case "Students":
-        return <Studentss changeTab={changeTab}/>;
-      case "Courses":
-        return <Courses changeTab={changeTab}/>;
-      case "StudentCourse":
-        return <StudentCourse changeTab={changeTab}/>;
-      case "About":
-        return <About changeTab={changeTab}/>;
-      default:
-        return null;
-    }
-  };
+  const currentTab = location.pathname.split("/")[2] || "Dashboard";
 
   const changeTab = (tabName) => {
-    setActiveTab(tabName);
+    navigate(`/home/${tabName}`);
   };
-
-  let content;
-  try {
-    content = updatePage();
-  } catch (e) {
-    console.log("Server error:", e);
-    content = <div className="text-danger p-3">⚠️ Something went wrong. Please try again later.</div>;
-  }
 
   return (
     <div>
-    <Navbar toggleSidebar={() => setSidebarOpen(prev => !prev)} />
-    <div className="d-flex">
-      <Sidebar changeTab={changeTab} activeTab={activeTab} sidebarOpen={sidebarOpen} />
-      <div className="flex-grow-1 p-3">{content}</div>
+      <Navbar toggleSidebar={() => setSidebarOpen((prev) => !prev)} />
+      <div className="d-flex">
+        <Sidebar changeTab={changeTab} activeTab={currentTab} sidebarOpen={sidebarOpen} />
+        <div className="flex-grow-1 p-3">
+          <Outlet />
+        </div>
+      </div>
     </div>
-  </div>
-
   );
 };
 
