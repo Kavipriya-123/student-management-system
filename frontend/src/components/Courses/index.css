@@ -91,8 +91,15 @@
     padding-left:200px;
 }
 
-.table-flow-control {
-  overflow-x: auto; 
-  overflow-y: auto; 
-  max-height: 350px; 
+.table-wrapper {
+  max-height: 350px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.table thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa; /* Light gray (same as Bootstrap's table-light) */
+  z-index: 2;
 }

@@ -59,10 +59,10 @@ const Courses = ({ changeTab }) => {
     try {
       if (isEditing) {
         await axios.put(`http://localhost:5000/api/courses/${formData.id}`, formData);
-        showSuccess("✅ Course updated successfully!");
+        showSuccess("Course updated successfully!");
       } else {
         await axios.post("http://localhost:5000/api/courses", formData);
-        showSuccess("✅ Course added successfully!");
+        showSuccess("Course added successfully!");
       }
       setModalOpen(false);
       fetchCourses();
@@ -75,7 +75,7 @@ const Courses = ({ changeTab }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5000/api/courses/${confirmDeleteId}`);
-      showSuccess("✅ Course deleted successfully!");
+      showSuccess("Course deleted successfully!");
       fetchCourses();
     } catch (err) {
       console.error(err);
@@ -124,7 +124,7 @@ const Courses = ({ changeTab }) => {
           <div className="spinner-border text-primary" role="status" />
           <div>Loading courses...</div>
         </div>
-      ) : (<div className="table-flow-control" >
+      ) : (<div className="table-wrapper" >
         <table className=" table table-striped">
           <thead>
             <tr>

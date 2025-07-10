@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { FaEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
+import { FaCheckCircle } from "react-icons/fa";
 import axios from "axios";
 import "./index.css";
 
@@ -52,10 +53,10 @@ const Studentss = ({ changeTab }) => {
     try {
       if (isUpdate) {
         await axios.put(`http://localhost:5000/update/${formData.id}`, formData);
-        showSuccess("✅ Student Updated Successfully!");
+        showSuccess("Student Updated Successfully!");
       } else {
         await axios.post("http://localhost:5000/create", formData);
-        showSuccess("✅ Student Added Successfully!");
+        showSuccess(" Student Added Successfully!");
       }
       setModalOpen(false);
       fetchData();
@@ -67,7 +68,7 @@ const Studentss = ({ changeTab }) => {
   const handleDelete = async () => {
     try {
       await axios.delete(`http://localhost:5000/delete/${confirmDeleteId}`);
-      showSuccess("✅ Student Deleted Successfully!");
+      showSuccess(" Student Deleted Successfully!");
       fetchData();
     } catch (e) {
       console.log(e);
@@ -91,6 +92,13 @@ const Studentss = ({ changeTab }) => {
 
   return (
     <div className="cont1 p-4">
+      {successMessage && (
+        <div className="success-toast">
+          <FaCheckCircle className="toast-icon" />
+          <span className="toast-text">{successMessage}</span>
+        </div>
+      )}
+
       <div className="d-flex justify-content-between align-items-center mb-4 flex-wrap">
         <div className="d-flex align-items-center">
           <i
@@ -106,44 +114,40 @@ const Studentss = ({ changeTab }) => {
         </button>
       </div>
 
-      {successMessage && (
-        <div className="success-toast">
-          <div className="checkmark">✔</div>
-          <div className="toast-text">{successMessage}</div>
-        </div>
-      )}
-
-      <div className="bg-white rounded p-3 position-relative table-flow-control">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th>Phone</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {stud.map((data, i) => (
-              <tr key={i}>
-                <td>{data.Name}</td>
-                <td>{data.Email}</td>
-                <td>{data.phone}</td>
-                <td>
-                  <button title="Edit" className="icon-style" onClick={() => openUpdateModal(data)}>
-                    <FaEdit />
-                  </button>
-                  <button title="Delete"
-                    className="icon-style delete-icon ms-2"
-                    onClick={() => confirmDelete(data.ID)}
-                  >
-                    <MdDelete />
-                  </button>
-                </td>
+      <div className="bg-white rounded p-3 position-relative">
+        <div className="table-wrapper">
+          <table className="table">
+            <thead className="table-light">
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {stud.map((data, i) => (
+                <tr key={i}>
+                  <td>{data.Name}</td>
+                  <td>{data.Email}</td>
+                  <td>{data.phone}</td>
+                  <td>
+                    <button title="Edit" className="icon-style" onClick={() => openUpdateModal(data)}>
+                      <FaEdit />
+                    </button>
+                    <button
+                      title="Delete"
+                      className="icon-style delete-icon ms-2"
+                      onClick={() => confirmDelete(data.ID)}
+                    >
+                      <MdDelete />
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
 
         {/* Modal */}
         {modalOpen && (
