@@ -82,3 +82,7 @@
 .delete-icon{
     color:rgb(192, 80, 80);
 }
+
+.sidebar.expanded ~ .main-content-area {
+  margin-left: 220px;
+}

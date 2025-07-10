@@ -4,7 +4,6 @@ import Navbar from "../Navbar"
 import Sidebar from "../Sidebar"
 
 import Dashboard from "../Dashboard"
-import AddStudents from "../AddStudents"
 import Courses from "../Courses"
 import StudentCourse from "../StudentCourse"
 import About from "../About"
@@ -19,8 +18,6 @@ const Home = () => {
         return <Dashboard />;
       case "Students":
         return <Studentss />;
-      case "AddStudent":
-        return <AddStudents />;
       case "Courses":
         return <Courses />;
       case "StudentCourse":
@@ -46,12 +43,13 @@ const Home = () => {
 
   return (
     <div>
-      <Navbar />
-      <div className="d-flex">
-        <Sidebar changeTab={changeTab} activeTab={activeTab} />
-        <div className="flex-grow-1 p-3">{content}</div>
-      </div>
+    <Navbar />
+    <div className="d-flex home-layout">
+      <Sidebar changeTab={changeTab} activeTab={activeTab} />
+      <div className="main-content-area flex-grow-1 p-3">{content}</div>
     </div>
+  </div>
+
   );
 };
 

@@ -1,0 +1,23 @@
+.ag-theme-alpine .ag-menu,
+.ag-theme-alpine .ag-tooltip {
+  background-color: white !important;
+  z-index: 1000 !important;
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.ag-theme-alpine .ag-menu-option {
+  background-color: white !important;
+  color: #333 !important;
+}
+
+.ag-theme-alpine {
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 14px;
+}
+
+.ag-row:hover {
+  background-color: #dff0ff !important;
+}
+.sidebar.expanded ~ .main-content-area {
+  margin-left: 220px;
+}

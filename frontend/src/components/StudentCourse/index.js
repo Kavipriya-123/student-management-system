@@ -42,7 +42,7 @@ const StudentCourse = () => {
   };
 
   return (
-    <div className="p-4 w-100">
+    <div className="container p-4 w-100">
       <h2>Assign Course to Students</h2>
 
       {error && (

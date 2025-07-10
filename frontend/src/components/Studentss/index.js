@@ -94,7 +94,7 @@ const Studentss = () => {
   };
 
   return (
-    <div className="dashboard p-4">
+    <div className="container dashboard p-4">
         <h1>Students</h1>
       <div className="bg-white rounded p-3 position-relative">
         <button className="btn btn-success mb-3" onClick={openAddModal}>

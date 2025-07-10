@@ -2,8 +2,9 @@ import "./index.css";
 import Cookies from "js-cookie";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { BiMenu } from "react-icons/bi"; // Hamburger icon
 
-const Navbar = () => {
+const Navbar = ({ toggleSidebar }) => {
   const navigate = useNavigate();
   const [greeting, setGreeting] = useState("");
   const [currentTime, setCurrentTime] = useState("");
@@ -34,9 +35,8 @@ const Navbar = () => {
     };
 
     updateGreetingAndTime();
-    const intervalId = setInterval(updateGreetingAndTime, 1000); 
-
-    return () => clearInterval(intervalId); 
+    const intervalId = setInterval(updateGreetingAndTime, 1000);
+    return () => clearInterval(intervalId);
   }, []);
 
   const handleLogout = () => {
@@ -47,24 +47,28 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary px-4 py-3 shadow">
+    <nav className="navbar sticky-top navbar-expand-lg navbar-dark bg-primary px-4 py-3 shadow-sm">
       <div className="container-fluid d-flex justify-content-between align-items-center w-100">
-        <h1 className="navbar-brand m-0 fw-bold fs-3">STUD-MNG</h1>
+        <div className="d-flex align-items-center">
+          {/* Sidebar Toggle Button */}
+          <BiMenu size={28} className="text-white me-3 cursor-pointer toggle-icon" onClick={toggleSidebar} />
+          <h1 className="navbar-brand m-0 fw-bold fs-3">🎓 SMS</h1>
+        </div>
 
-        <div className="text-light text-end me-3">
+        <div className="text-light text-end me-3 d-none d-md-block">
           <div className="fw-semibold">{greeting}</div>
           <div className="small">{currentTime}</div>
         </div>
 
-        <div>
-        <button
-          onClick={handleLogout}
-          className="btn-nav btn btn-light fw-semibold"
-          type="button"
-        >
-          Logout
-        </button>
-          <img alt="profile" className="user-logo-style" src={localStorage.getItem("userGender")==="Female"?"female.png":"male.png"}/>
+        <div className="d-flex align-items-center">
+          <button onClick={handleLogout} className="btn-nav btn btn-light fw-semibold me-2">
+            Logout
+          </button>
+          <img
+            alt="profile"
+            className="user-logo-style"
+            src={localStorage.getItem("userGender") === "Female" ? "/female.png" : "/male.png"}
+          />
         </div>
       </div>
     </nav>

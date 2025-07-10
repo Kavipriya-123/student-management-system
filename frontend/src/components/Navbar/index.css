@@ -13,9 +13,27 @@
   background-color: #f8f9fa;
   color: #0d6efd;
 }
-.user-logo-style{
-  width:60px;
-  height:60px;
-  margin-left:20px;
-  color: white;
+
+.user-logo-style {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-left: 10px;
+  border: 2px solid #fff;
+}
+
+.toggle-icon {
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    font-size: 1.2rem;
+  }
+
+  .user-logo-style {
+    width: 40px;
+    height: 40px;
+  }
 }

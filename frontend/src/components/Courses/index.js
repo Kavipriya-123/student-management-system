@@ -97,7 +97,7 @@ const Courses = () => {
   };
 
   return (
-    <div className="p-4 w-100">
+    <div className="container p-4 ">
       <h2>Courses</h2>
 
       {error && <div className="alert alert-danger">{error}</div>}

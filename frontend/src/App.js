@@ -1,9 +1,13 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
+import { AllEnterpriseModule, ModuleRegistry } from 'ag-grid-enterprise';
+ModuleRegistry.registerModules([AllEnterpriseModule]);
+
 
 const App = () => {
   return (
