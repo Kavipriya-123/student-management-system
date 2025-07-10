@@ -83,11 +83,12 @@
   max-height: 350px;
   overflow-y: auto;
   position: relative;
+  overflow-x:auto;
 }
 
 .table thead th {
   position: sticky;
   top: 0;
-  background-color: #f8f9fa; /* Light gray (same as Bootstrap's table-light) */
+  background-color: #f8f9fa; 
   z-index: 2;
 }
