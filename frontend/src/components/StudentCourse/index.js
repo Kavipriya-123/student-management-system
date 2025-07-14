@@ -67,7 +67,7 @@ const StudentCourse = ({ changeTab }) => {
           <div className="spinner-border text-primary" role="status" />
           <div>Loading data...</div>
         </div>
-      ) : (<div className="table-flow-control">
+      ) : (<div className="table-wrapper">
         <table className="table table-bordered">
           <thead>
             <tr>
